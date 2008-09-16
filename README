@@ -1,6 +1,40 @@
 = Members
 
 Enhances the Radiant users model for use as a site-wide members
-feature.  To install:
+feature.  It makes the following changes:
+
+The User model now has a:
+
+- photo  (file_column)
+- url
+
+A new `Profile` tab is added.  This becomes the default tab on login.
+A new Snippet named `profile_sidebar` is created which can be used to
+modify the profile page.
+
+All tabs except for Profile now default to require :developer or
+:admin role access.  This includes the Page and Snippets tabs.
+
+A new registration form will be created at:
+
+  /admin/members/register
+
+To install:
 
 - rake db:migrate:extensions
+- merge the contents of members/public/images into your public/images directory
+
+
+The extension includes a copy of the file_column plugin.
+
+
+There's *lots* still to be done, including:
+
+- Using email confirmation for registration
+- Allowing for user registration approval
+- Linking to the registration page on the login page
+- RSpec tests
+
+For questions and suggestions contact Aaron Farr at 
+  farra [at] apache [dot] org
+
