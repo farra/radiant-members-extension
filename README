@@ -1,0 +1,6 @@
+= Members
+
+Enhances the Radiant users model for use as a site-wide members
+feature.  To install:
+
+- rake db:migrate:extensions
