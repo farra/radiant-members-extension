@@ -1,0 +1,10 @@
+<% unless @user.errors.empty? %>
+  <ul>
+  <% @user.errors.each_full do |message| %>
+    <li><%= message %></li>
+  <% end %>
+  </ul>
+<% end %>
+
+
+<a href="javascript:window.back();">Go Back</a>

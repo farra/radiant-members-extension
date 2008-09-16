@@ -1,0 +1,69 @@
+
+<h2>Hello, <%= @user.name %></h2>
+
+<table width='100%'>
+
+<tr>
+<td style="padding-left: 10px; vertical-align: top; width:300px;">
+  <% if @user.photo %>
+   <%= image_tag url_for_file_column("user", "photo") %>
+  <% else %>
+   <img src="/images/admin/profile.png" alt="<%= @user.name%>" height="80" width="80"/>
+  <% end %>
+  <br/>
+  <%= @sidebar_text %>
+
+</td>
+
+<td>
+<% form_tag '/admin/members/edit', :multipart => true do %>
+ <table class='fieldset'>
+
+   <tr><th class='label'><label for="user_name">Name<label></th>
+       <td class='field'><%= text_field :user, :name %></td>
+       <td class='help'>Full name as you prefer it to appear on the website.</td>
+       </tr>
+
+   <tr><th class='label'><label for="user_email">Email</label></th>
+       <td class='field'><%= text_field :user, :email %></td>
+       <td class='help'>Current email address.</td>
+       </tr>
+
+   <tr><th class='label'><label class="optional" for="user_password">Password</label></th>
+       <td class='field'><%= password_field :user, :password,  :value => ''%></td>
+       <td class='help'>You may optionally update your password.</td>
+       </tr>
+
+   <tr><th class='label'><label class="optional" for="user_password_confirmation">Confirm Password</label></th>
+       <td class='field'><%= password_field :user,  :password_confirmation %></td>
+       <td class='help'>Repeat your password.</td>
+       </tr>
+
+   <tr><th class='label'><label class="optional" for="user_url">Website</label></th>
+       <td class='field' class='optional'><%= text_field :user, :url %></td>
+       <td class='help'>Your personal or company website.  Requires <code>http://</code> prefix</td>
+       </tr>
+
+   <tr><th class='label'><label class="optional" for="user_photo">Photo</label></th>
+       <td class='field'><%= file_column_field "user", "photo" %></td>
+       <td class='help'>A current photo.</td>
+       </tr>
+
+   <tr><th class='label'><label class='optional' for="user_notes">Notes</a></th>
+       <td class='field'><%= text_area :user, :notes %></td>
+       <td class='help'><em>Text only</em> background and profile information.</td>
+       </tr>
+
+   <tr><td colspan='3'>
+       <%= hidden_field :user, :id %>
+       <%= submit_tag 'Update' %>
+       </td></tr>
+ </table>  
+<% end %>
+
+</td>
+
+
+</tr>
+
+</table>
